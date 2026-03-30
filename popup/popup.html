@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>YouFilter</h1>
+    <p class="subtitle">Filter your YouTube feed</p>
+
+    <div class="toggle-row">
+      <label for="enabled">Filtering enabled</label>
+      <input type="checkbox" id="enabled" />
+    </div>
+
+    <hr />
+
+    <h2>Filters</h2>
+
+    <div class="toggle-row">
+      <label for="redirectHome">Redirect home to Subscriptions</label>
+      <input type="checkbox" id="redirectHome" />
+    </div>
+
+    <div class="toggle-row">
+      <label for="hideShorts">Hide Shorts</label>
+      <input type="checkbox" id="hideShorts" />
+    </div>
+
+    <div class="toggle-row">
+      <label for="hideAds">Hide Ads</label>
+      <input type="checkbox" id="hideAds" />
+    </div>
+
+    <div class="toggle-row">
+      <label for="hideUnsubscribed">Hide unsubscribed channels</label>
+      <input type="checkbox" id="hideUnsubscribed" />
+    </div>
+
+    <div class="toggle-row">
+      <label for="hideRageBait">Hide rage bait / slop</label>
+      <input type="checkbox" id="hideRageBait" />
+    </div>
+
+    <hr />
+
+    <details class="section">
+      <summary>Blocked Keywords <span class="count" id="keywordCount">0</span></summary>
+      <div class="keyword-input-row">
+        <input type="text" id="newKeyword" placeholder="Add keyword..." />
+        <button id="addKeywordBtn">+</button>
+      </div>
+      <ul id="keywordList" class="tag-list"></ul>
+    </details>
+
+    <details class="section">
+      <summary>Rage Bait Phrases <span class="count" id="rageBaitCount">0</span></summary>
+      <div class="keyword-input-row">
+        <input type="text" id="newRageBait" placeholder="Add phrase..." />
+        <button id="addRageBaitBtn">+</button>
+      </div>
+      <ul id="rageBaitList" class="tag-list"></ul>
+    </details>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
