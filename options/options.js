@@ -39,7 +39,7 @@ function showStatus(msg) {
 }
 
 function save() {
-  chrome.storage.sync.set({ settings }, () => showStatus("Saved"));
+  browser.storage.sync.set({ settings }).then(() => showStatus("Saved"));
 }
 
 // --- Generic list renderer (tag style) ---
@@ -190,32 +190,31 @@ function updateSyncInfo() {
   }
 }
 
-syncBtnEl.addEventListener("click", () => {
+syncBtnEl.addEventListener("click", async () => {
   syncBtnEl.disabled = true;
   syncStatusEl.textContent = "Syncing...";
-  chrome.runtime.sendMessage({ type: "syncSubscriptions" }, (response) => {
-    syncBtnEl.disabled = false;
+  try {
+    const response = await browser.runtime.sendMessage({ type: "syncSubscriptions" });
     if (response?.success) {
       syncStatusEl.textContent = `Synced ${response.count} channels`;
-      // Reload settings to get updated sync data
-      chrome.storage.sync.get("settings", (result) => {
-        settings = result.settings;
-        updateSyncInfo();
-      });
+      const result = await browser.storage.sync.get("settings");
+      settings = result.settings;
+      updateSyncInfo();
     } else {
       syncStatusEl.textContent = `Error: ${response?.error || "unknown"}`;
     }
-    setTimeout(() => (syncStatusEl.textContent = ""), 4000);
-  });
+  } catch (err) {
+    syncStatusEl.textContent = `Error: ${err.message}`;
+  }
+  syncBtnEl.disabled = false;
+  setTimeout(() => (syncStatusEl.textContent = ""), 4000);
 });
 
 // --- Stats dashboard ---
 
-function loadStats() {
-  chrome.runtime.sendMessage({ type: "getStats" }, (stats) => {
-    if (!stats) stats = {};
-    renderStats(stats);
-  });
+async function loadStats() {
+  const stats = await browser.runtime.sendMessage({ type: "getStats" });
+  renderStats(stats || {});
 }
 
 function renderStats(stats) {
@@ -313,7 +312,7 @@ importFileEl.addEventListener("change", (e) => {
 
 // --- Load settings ---
 
-chrome.storage.sync.get("settings", (result) => {
+browser.storage.sync.get("settings").then((result) => {
   settings = result.settings;
   toggles.forEach(({ el, key }) => {
     el.checked = settings[key];

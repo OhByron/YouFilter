@@ -9,7 +9,10 @@
       "Bash(git -C /d/Coding/YouFilter diff)",
       "Bash(git -C /d/Coding/YouFilter log --oneline -5)",
       "Bash(git -C /d/Coding/YouFilter add manifest.json background.js content_script.js popup/popup.html popup/popup.css popup/popup.js options/)",
-      "Bash(git -C:*)"
+      "Bash(git -C:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

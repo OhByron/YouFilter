@@ -38,7 +38,7 @@ function showStatus(msg) {
 }
 
 function save() {
-  chrome.storage.sync.set({ settings }, () => showStatus("Saved"));
+  browser.storage.sync.set({ settings }).then(() => showStatus("Saved"));
 }
 
 // --- Generic list renderer ---
@@ -191,12 +191,12 @@ importFileEl.addEventListener("change", (e) => {
 
 document.getElementById("openOptions").addEventListener("click", (e) => {
   e.preventDefault();
-  chrome.runtime.openOptionsPage();
+  browser.runtime.openOptionsPage();
 });
 
 // --- Load settings on open ---
 
-chrome.storage.sync.get("settings", (result) => {
+browser.storage.sync.get("settings").then((result) => {
   settings = result.settings;
   toggles.forEach(({ el, key }) => {
     el.checked = settings[key];

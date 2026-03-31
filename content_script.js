@@ -1,16 +1,13 @@
 let settings = null;
 let hiddenCount = 0;
 
-function loadSettings() {
-  return new Promise((resolve) => {
-    chrome.storage.sync.get("settings", (result) => {
-      settings = result.settings;
-      resolve(settings);
-    });
-  });
+async function loadSettings() {
+  const result = await browser.storage.sync.get("settings");
+  settings = result.settings;
+  return settings;
 }
 
-chrome.storage.onChanged.addListener((changes) => {
+browser.storage.onChanged.addListener((changes) => {
   if (changes.settings) {
     settings = changes.settings.newValue;
     processAllVideos();
@@ -21,13 +18,13 @@ chrome.storage.onChanged.addListener((changes) => {
 // --- Stats tracking ---
 
 function recordStat(reason) {
-  chrome.runtime.sendMessage({ type: "recordStat", reason });
+  browser.runtime.sendMessage({ type: "recordStat", reason });
 }
 
 // --- Badge count ---
 
 function updateBadge() {
-  chrome.runtime.sendMessage({ type: "updateBadge", count: hiddenCount });
+  browser.runtime.sendMessage({ type: "updateBadge", count: hiddenCount });
 }
 
 function resetHiddenCount() {
