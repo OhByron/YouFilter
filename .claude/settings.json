@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \":*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git -C /d/Coding/YouFilter status)",
+      "Bash(git -C /d/Coding/YouFilter diff)",
+      "Bash(git -C /d/Coding/YouFilter log --oneline -5)",
+      "Bash(git -C /d/Coding/YouFilter add manifest.json background.js content_script.js popup/popup.html popup/popup.css popup/popup.js options/)",
+      "Bash(git -C:*)"
+    ]
+  }
+}
