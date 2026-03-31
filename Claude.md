@@ -43,3 +43,4 @@ Manifest V3 Chrome Extension
 - Add a keyword blocklist for political/rage-bait titles
 - Hide non-subscription cards on the homepage feed
 - Auto-redirect `youtube.com` homepage to `/feed/subscriptions`
+
