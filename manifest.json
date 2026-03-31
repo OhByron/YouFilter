@@ -5,7 +5,7 @@
   "description": "Filter political and rage-bait content from your YouTube feed",
   "permissions": ["storage", "activeTab", "identity"],
 "oauth2": {
-    "client_id": "658670080164-5ofgobe1sqq9rlm2bkk26l9vg74bmlt7.apps.googleusercontent.com",
+    "client_id": "yourgoogleOAuthKEY.apps.googleusercontent.com",
     "scopes": ["https://www.googleapis.com/auth/youtube.readonly"]
   },
   "icons": {
