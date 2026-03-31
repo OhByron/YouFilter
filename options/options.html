@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouFilter Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>YouFilter Settings</h1>
+      <p class="subtitle">Configure your YouTube feed filters</p>
+    </header>
+
+    <section class="card">
+      <h2>General</h2>
+      <div class="toggle-row">
+        <span>Filtering enabled</span>
+        <label class="switch"><input type="checkbox" id="enabled"><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span>Redirect home to Subscriptions</span>
+        <label class="switch"><input type="checkbox" id="redirectHome"><span class="slider"></span></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Content Filters</h2>
+      <div class="toggle-row">
+        <span>Hide Shorts</span>
+        <label class="switch"><input type="checkbox" id="hideShorts"><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span>Hide Ads</span>
+        <label class="switch"><input type="checkbox" id="hideAds"><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span>Hide unsubscribed channels</span>
+        <label class="switch"><input type="checkbox" id="hideUnsubscribed"><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span>Hide rage bait / slop</span>
+        <label class="switch"><input type="checkbox" id="hideRageBait"><span class="slider"></span></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Per-Page Rules</h2>
+      <div class="toggle-row">
+        <span>Enable per-page rules</span>
+        <label class="switch"><input type="checkbox" id="usePageRules"><span class="slider"></span></label>
+      </div>
+      <div id="pageRulesContainer" class="page-rules" style="display:none">
+        <div class="page-rule" data-page="home">
+          <h3>Homepage</h3>
+          <div class="toggle-row"><span>Hide Shorts</span><label class="switch"><input type="checkbox" data-rule="hideShorts"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Ads</span><label class="switch"><input type="checkbox" data-rule="hideAds"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Rage Bait</span><label class="switch"><input type="checkbox" data-rule="hideRageBait"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Unsubscribed</span><label class="switch"><input type="checkbox" data-rule="hideUnsubscribed"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Keyword Filter</span><label class="switch"><input type="checkbox" data-rule="keywords"><span class="slider"></span></label></div>
+        </div>
+        <div class="page-rule" data-page="search">
+          <h3>Search Results</h3>
+          <div class="toggle-row"><span>Hide Shorts</span><label class="switch"><input type="checkbox" data-rule="hideShorts"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Ads</span><label class="switch"><input type="checkbox" data-rule="hideAds"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Rage Bait</span><label class="switch"><input type="checkbox" data-rule="hideRageBait"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Unsubscribed</span><label class="switch"><input type="checkbox" data-rule="hideUnsubscribed"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Keyword Filter</span><label class="switch"><input type="checkbox" data-rule="keywords"><span class="slider"></span></label></div>
+        </div>
+        <div class="page-rule" data-page="subscriptions">
+          <h3>Subscriptions Feed</h3>
+          <div class="toggle-row"><span>Hide Shorts</span><label class="switch"><input type="checkbox" data-rule="hideShorts"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Ads</span><label class="switch"><input type="checkbox" data-rule="hideAds"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Rage Bait</span><label class="switch"><input type="checkbox" data-rule="hideRageBait"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Unsubscribed</span><label class="switch"><input type="checkbox" data-rule="hideUnsubscribed"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Keyword Filter</span><label class="switch"><input type="checkbox" data-rule="keywords"><span class="slider"></span></label></div>
+        </div>
+        <div class="page-rule" data-page="watch">
+          <h3>Watch Page / Sidebar</h3>
+          <div class="toggle-row"><span>Hide Shorts</span><label class="switch"><input type="checkbox" data-rule="hideShorts"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Ads</span><label class="switch"><input type="checkbox" data-rule="hideAds"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Rage Bait</span><label class="switch"><input type="checkbox" data-rule="hideRageBait"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Hide Unsubscribed</span><label class="switch"><input type="checkbox" data-rule="hideUnsubscribed"><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Keyword Filter</span><label class="switch"><input type="checkbox" data-rule="keywords"><span class="slider"></span></label></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>YouTube Subscriptions Sync</h2>
+      <p class="hint">Sync your YouTube subscriptions to automatically whitelist your subscribed channels. Requires Google sign-in.</p>
+      <div class="sync-row">
+        <button id="syncBtn" class="action-btn">Sync Subscriptions</button>
+        <span class="sync-status" id="syncStatus"></span>
+      </div>
+      <p class="hint" id="syncInfo"></p>
+    </section>
+
+    <section class="card">
+      <h2>Channel Whitelist</h2>
+      <p class="hint">These channels will never be hidden, even if they match keywords.</p>
+      <div class="input-row">
+        <input type="text" id="newWhitelist" placeholder="Add channel name...">
+        <button id="addWhitelistBtn">Add</button>
+      </div>
+      <ul id="whitelistList" class="tag-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Channel Blacklist</h2>
+      <p class="hint">These channels will always be hidden.</p>
+      <div class="input-row">
+        <input type="text" id="newBlacklist" placeholder="Add channel name...">
+        <button id="addBlacklistBtn">Add</button>
+      </div>
+      <ul id="blacklistList" class="tag-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Blocked Keywords</h2>
+      <p class="hint">Videos with these words in the title or description will be hidden.</p>
+      <div class="input-row">
+        <input type="text" id="newKeyword" placeholder="Add keyword...">
+        <button id="addKeywordBtn">Add</button>
+      </div>
+      <ul id="keywordList" class="tag-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Rage Bait Phrases</h2>
+      <p class="hint">Common clickbait/rage-bait phrases to detect and hide.</p>
+      <div class="input-row">
+        <input type="text" id="newRageBait" placeholder="Add phrase...">
+        <button id="addRageBaitBtn">Add</button>
+      </div>
+      <ul id="rageBaitList" class="tag-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Stats Dashboard</h2>
+      <p class="hint">Videos filtered over the last 30 days.</p>
+      <div class="stats-summary" id="statsSummary"></div>
+      <div class="stats-chart" id="statsChart"></div>
+      <div class="stats-breakdown" id="statsBreakdown"></div>
+    </section>
+
+    <section class="card">
+      <h2>Import / Export</h2>
+      <div class="import-export-row">
+        <button id="exportBtn" class="action-btn">Export Settings</button>
+        <button id="importBtn" class="action-btn">Import Settings</button>
+        <input type="file" id="importFile" accept=".json" style="display:none">
+      </div>
+    </section>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

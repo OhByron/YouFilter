@@ -10,8 +10,8 @@
     <p class="subtitle">Filter your YouTube feed</p>
 
     <div class="toggle-row">
-      <label for="enabled">Filtering enabled</label>
-      <input type="checkbox" id="enabled" />
+      <span>Filtering enabled</span>
+      <label class="switch"><input type="checkbox" id="enabled"><span class="slider"></span></label>
     </div>
 
     <hr />
@@ -19,49 +19,87 @@
     <h2>Filters</h2>
 
     <div class="toggle-row">
-      <label for="redirectHome">Redirect home to Subscriptions</label>
-      <input type="checkbox" id="redirectHome" />
+      <span>Redirect home to Subscriptions</span>
+      <label class="switch"><input type="checkbox" id="redirectHome"><span class="slider"></span></label>
     </div>
 
     <div class="toggle-row">
-      <label for="hideShorts">Hide Shorts</label>
-      <input type="checkbox" id="hideShorts" />
+      <span>Hide Shorts</span>
+      <label class="switch"><input type="checkbox" id="hideShorts"><span class="slider"></span></label>
     </div>
 
     <div class="toggle-row">
-      <label for="hideAds">Hide Ads</label>
-      <input type="checkbox" id="hideAds" />
+      <span>Hide Ads</span>
+      <label class="switch"><input type="checkbox" id="hideAds"><span class="slider"></span></label>
     </div>
 
     <div class="toggle-row">
-      <label for="hideUnsubscribed">Hide unsubscribed channels</label>
-      <input type="checkbox" id="hideUnsubscribed" />
+      <span>Hide unsubscribed channels</span>
+      <label class="switch"><input type="checkbox" id="hideUnsubscribed"><span class="slider"></span></label>
     </div>
 
     <div class="toggle-row">
-      <label for="hideRageBait">Hide rage bait / slop</label>
-      <input type="checkbox" id="hideRageBait" />
+      <span>Hide rage bait / slop</span>
+      <label class="switch"><input type="checkbox" id="hideRageBait"><span class="slider"></span></label>
     </div>
 
     <hr />
 
     <details class="section">
-      <summary>Blocked Keywords <span class="count" id="keywordCount">0</span></summary>
-      <div class="keyword-input-row">
-        <input type="text" id="newKeyword" placeholder="Add keyword..." />
-        <button id="addKeywordBtn">+</button>
+      <summary>Channel Whitelist <span class="count" id="whitelistCount">0</span></summary>
+      <div class="section-content">
+        <div class="keyword-input-row">
+          <input type="text" id="newWhitelist" placeholder="Add channel name..." />
+          <button id="addWhitelistBtn">+</button>
+        </div>
+        <ul id="whitelistList" class="tag-list"></ul>
       </div>
-      <ul id="keywordList" class="tag-list"></ul>
+    </details>
+
+    <details class="section">
+      <summary>Channel Blacklist <span class="count" id="blacklistCount">0</span></summary>
+      <div class="section-content">
+        <div class="keyword-input-row">
+          <input type="text" id="newBlacklist" placeholder="Add channel name..." />
+          <button id="addBlacklistBtn">+</button>
+        </div>
+        <ul id="blacklistList" class="tag-list"></ul>
+      </div>
+    </details>
+
+    <details class="section">
+      <summary>Blocked Keywords <span class="count" id="keywordCount">0</span></summary>
+      <div class="section-content">
+        <div class="keyword-input-row">
+          <input type="text" id="newKeyword" placeholder="Add keyword..." />
+          <button id="addKeywordBtn">+</button>
+        </div>
+        <ul id="keywordList" class="tag-list"></ul>
+      </div>
     </details>
 
     <details class="section">
       <summary>Rage Bait Phrases <span class="count" id="rageBaitCount">0</span></summary>
-      <div class="keyword-input-row">
-        <input type="text" id="newRageBait" placeholder="Add phrase..." />
-        <button id="addRageBaitBtn">+</button>
+      <div class="section-content">
+        <div class="keyword-input-row">
+          <input type="text" id="newRageBait" placeholder="Add phrase..." />
+          <button id="addRageBaitBtn">+</button>
+        </div>
+        <ul id="rageBaitList" class="tag-list"></ul>
       </div>
-      <ul id="rageBaitList" class="tag-list"></ul>
     </details>
+
+    <hr />
+
+    <div class="import-export-row">
+      <button id="exportBtn" class="action-btn">Export Settings</button>
+      <button id="importBtn" class="action-btn">Import Settings</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" />
+    </div>
+
+    <div class="options-link-row">
+      <a href="#" id="openOptions">Open Full Settings</a>
+    </div>
 
     <div class="status" id="status"></div>
   </div>
